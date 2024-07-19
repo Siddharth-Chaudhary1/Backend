@@ -17,7 +17,7 @@ const registerUser = asyncHandler( async (req,res) =>{
 
     // if response if in the form of json or form we use req.body
     const {fullName,email,username,password} = req.body;
-    console.log("email: ",email);
+    // console.log("email: ",email);
 
     //  to validate each field 
     if(
@@ -28,7 +28,7 @@ const registerUser = asyncHandler( async (req,res) =>{
     }
 
     // user is imported and will be used to check for unique logins
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ username },{ email }]
     })
 
