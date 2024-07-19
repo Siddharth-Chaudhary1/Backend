@@ -58,7 +58,7 @@ const userSchema = new Schema(
 userSchema.pre("save", async function(next){
     // to stop it from executing ever time even if password is not changed isModified is used ans passowrd is passed as string 
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password,10);
+    this.password = await bcrypt.hash(this.password,10);
     next();
 });
 
